@@ -1,13 +1,17 @@
+const ROCK = "rock"
+const PAPER = "paper"
+const SCISSORS = "scissors"
+
 function getComputerChoice() {
     let computerChoice 
     let randomChoice = Math.random()
     if (randomChoice < 1/3) {
-        computerChoice = "rock"
+        computerChoice = ROCK
 
     } else if (randomChoice < 2/3) {
-        computerChoice = "paper"
+        computerChoice = PAPER
     } else {
-        computerChoice = "scissors"
+        computerChoice = SCISSORS
     }
     return computerChoice
 }
@@ -28,14 +32,14 @@ const results = document.querySelector("#results")
 const scoreContainer = document.querySelector("#score");
 scoreContainer.textContent = `Score: You ${humanScore} - Computer ${computerScore}`;
 
-btnRock.addEventListener("click", () => playRound("rock"));
-btnPaper.addEventListener("click", () => playRound("paper"));
-btnScissors.addEventListener("click", () => playRound("scissors"));
+btnRock.addEventListener("click", () => playRound(ROCK));
+btnPaper.addEventListener("click", () => playRound(PAPER));
+btnScissors.addEventListener("click", () => playRound(SCISSORS));
 
 
 function playRound(humanChoice) {
 
-    if (i >= 5) return;
+    //if (i >= 5) return;
 
     results.innerHTML = ""
 
@@ -46,9 +50,9 @@ function playRound(humanChoice) {
         const result = "draw. Try again."
         results.textContent = result                                                                           
     } else if (
-           (humanChoice === "rock" && computerChoice === "scissors") ||
-    (humanChoice === "paper" && computerChoice === "rock") ||
-    (humanChoice === "scissors" && computerChoice === "paper")
+        (humanChoice === ROCK && computerChoice === SCISSORS) ||
+    (humanChoice === PAPER && computerChoice === ROCK) ||
+    (humanChoice === SCISSORS && computerChoice === PAPER)
     ) {
         humanScore ++
         const result = `you win! ${humanChoice} beats ${computerChoice}. Go again?`
@@ -68,7 +72,7 @@ function playRound(humanChoice) {
         gameOver()
     }
 
-    }
+}
 
 
 function gameOver () {
